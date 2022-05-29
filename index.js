@@ -20,7 +20,7 @@ app.use('/api/auth', authRouter);
 
 app.use('/api/questions', questionRouter);
 
-app.use('/api/answer', answerRouter);
+app.use('/api/answers', answerRouter);
 
 app.listen(process.env.PORT, (err) => {
 
