@@ -95,21 +95,21 @@ const voteQuestion = async (req, res) => {
     
 }
 
-const deleteQuestion = async (req, res) => {
-    const { id } = req.params
+// const deleteQuestion = async (req, res) => {
+//     const { id } = req.params
 
-    try{
-        if (!mongoose.isValidObjectId(id)) {
-            throw new Error('not valid objectId')
-        }
-        const searchQuestion = await QuestionModel.findById(id)
-        if (!searchQuestion) {
-            throw new Error('cant search your id')
-        } 
+//     try{
+//         if (!mongoose.isValidObjectId(id)) {
+//             throw new Error('not valid objectId')
+//         }
+//         const searchQuestion = await QuestionModel.findById(id)
+//         if (!searchQuestion) {
+//             throw new Error('cant search your id')
+//         } 
         
-        res.send({ success: 1, data: 'deleted question'})
-    }
-}
+//         res.send({ success: 1, data: 'deleted question'})
+//     }
+// }
 
 module.exports = {
     createQuestion,

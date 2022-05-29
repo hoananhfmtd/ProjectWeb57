@@ -32,16 +32,6 @@ Router.put(
 
 
 
-// Router.put('/vote', async (req, res) => {
-//     const {voteChange, id} = req.body;
-//     try{
-//         if (!mongoose.isValidObjectId(id)) {
-//             throw new Error('')
-//         }
-//         const question = await QuestionModel.findById(id)
-//     }
-// })
-
 
 module.exports = Router;
 
