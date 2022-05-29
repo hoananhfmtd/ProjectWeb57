@@ -1,7 +1,7 @@
-const Router = require('express').Router()
-const answerController = require('./answer.controller')
+// const Router = require('express').Router()
+// const answerController = require('./answer.controller')
 
-Router.put(
-    '/:answerId/:voteChange',
-    answerController.voteAnswer
-)
+// Router.put(
+//     '/:answerId/:voteChange',
+//     answerController.voteAnswer
+// )
