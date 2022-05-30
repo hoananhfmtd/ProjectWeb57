@@ -50,22 +50,23 @@ const getQuestions = async (req, res) => {
 }
 
 const updateQuestion = async (req, res) => {
-    const {questionId} = req.params
-    const dataUpdateQuestion = req.body
-    // console.log(dataUpdateQuestion)
-    
+    const { questionId } = req.params
+    const dataUpdate = req.body
+
     try{
         const foundQuestion = await QuestionModel.findById(questionId);
         if (!foundQuestion) {
             throw new Error('Not found question')
         } 
         const updateQuestion = await QuestionModel
-            .findByIdAndUpdate(questionId, dataUpdateQuestion, { new: true })
+            .findByIdAndUpdate(questionId, dataUpdate, { new: true })
         res.send({ success: 1, data: updateQuestion})
     } catch(err) {
         res.send({ success: 0, data: err.message || 'Something went wrong'})
     }
 }
+
+
 
 
 const voteQuestion = async (req, res) => {
@@ -116,5 +117,6 @@ module.exports = {
     getQuestion,
     getQuestions,
     updateQuestion,
-    voteQuestion
+    voteQuestion,
+    viewQuestion
 }

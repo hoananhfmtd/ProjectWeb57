@@ -29,9 +29,5 @@ Router.put(
     questionController.voteQuestion
 )
 
-
-
-
-
 module.exports = Router;
 
