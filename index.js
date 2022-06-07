@@ -1,7 +1,9 @@
 require('dotenv').config();
 const mongoose = require('mongoose')
 const express = require('express')
+const cors = require('cors')
 const authRouter = require('./modules/auth/auth.router');
+const answer = require("./modules/answer/answer.router")
 // const questionRouter = require('./modules/question');
 
 mongoose.connect(process.env.MONGODB_URI, (err) => {
@@ -9,6 +11,7 @@ mongoose.connect(process.env.MONGODB_URI, (err) => {
     console.log('db success')
 })
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -17,6 +20,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRouter);
 // app.use('/api/questions', questionRouter);
+app.use('/api/answers',answer);
 
 app.listen(process.env.PORT, (err) => {
 
