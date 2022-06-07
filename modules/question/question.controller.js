@@ -118,5 +118,4 @@ module.exports = {
     getQuestions,
     updateQuestion,
     voteQuestion,
-    viewQuestion
 }
