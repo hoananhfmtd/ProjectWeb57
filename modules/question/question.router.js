@@ -1,19 +1,33 @@
-const Router = require('express').Router;
+const Router = require('express').Router();
+const questionController = require('./question.controller');
 
-// api/questions?keyword=123
-Router.get('/', async (req, res) => {
-    const { keyword } = req.query
-    res.send({ success: 1 })
-})
 
 // api/questions/
-Router.post('/', async (req, res) => {
-    res.send({ success: 1 })
-})
+Router.post(
+    '/',
+    questionController.createQuestion 
+)
+//search question
+Router.get(
+    '/:id',
+    questionController.getQuestion
+)
 
-// api/questions/:id
-Router.post('/:id', async (req, res) => {
-    res.send({ success: 1 })
-})
+//search questions
+Router.get(
+    '/',
+    questionController.getQuestions
+)
+//update body question
+Router.put(
+    '/:questionId',
+    questionController.updateQuestion
+)
+//update vote question
+Router.put(
+    '/:questionId/:voteChange',
+    questionController.voteQuestion
+)
 
 module.exports = Router;
+

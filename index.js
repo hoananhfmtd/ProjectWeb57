@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 const express = require('express')
 const cors = require('cors')
 const authRouter = require('./modules/auth/auth.router');
-const answer = require("./modules/answer/answer.router")
 // const questionRouter = require('./modules/question');
+const questionRouter = require('./modules/question/question.router');
+const answerRouter = require('./modules/answer/answer.router')
 
 mongoose.connect(process.env.MONGODB_URI, (err) => {
     if (err) return console.log('err');
@@ -20,10 +21,12 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRouter);
 // app.use('/api/questions', questionRouter);
-app.use('/api/answers',answer);
+
+app.use('/api/questions', questionRouter);
+
+app.use('/api/answers', answerRouter);
 
 app.listen(process.env.PORT, (err) => {
-
     if(err) throw err
     console.log('Sever started')
 })
