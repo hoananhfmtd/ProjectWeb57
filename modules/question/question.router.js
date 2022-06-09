@@ -13,11 +13,18 @@ Router.get(
     questionController.getQuestion
 )
 
-//search questions
+//get question by id
 Router.get(
     '/',
     questionController.getQuestions
 )
+
+//search question
+Router.get(
+    '/:keyword',
+    questionController.searchQuestions
+)
+
 //update body question
 Router.put(
     '/:questionId',

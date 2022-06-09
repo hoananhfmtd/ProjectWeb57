@@ -34,16 +34,29 @@ const getQuestion = async (req, res) => {
     }
 }
 
-const getQuestions = async (req, res) => {
+const searchQuestions = async (req, res) => {
     const { keyword } = req.query
     try {
-        const searchQuestions = await QuestionModel.find({
+        const searchQuestion = await QuestionModel.find({
             $or: [
                 { 'description': { $regex: new RegExp(keyword, 'i') }},
                 { 'title': { $regex: new RegExp(keyword, 'i') }},
                 { 'tags': { $regex: new RegExp(keyword, 'i') }}
             ]})
-        res.send({ success: 1, data: searchQuestions})
+        if (!searchQuestion) {
+            res.send({ success: 1, data: "Your question search not found!"})
+        } else {
+            res.send({ success: 1, data: searchQuestion})
+        }    
+    } catch(err) {
+        res.send({ success: 0, data: err.message || "Something went wrong"})
+    }
+}
+
+const getQuestions = async (req, res) => {
+    try {
+        const listQuestion = await QuestionModel.find({})
+        res.send({ success: 1, data: listQuestion})
     } catch(err) {
         res.send({ success: 0, data: err.message || "Something went wrong"})
     }
@@ -75,9 +88,9 @@ const voteQuestion = async (req, res) => {
     try{
         let voteChangeValue = 0
         // const voteChangeValue = (voteChange === "upVote") ? 1 : -1
-        if (voteChange === "upVote"){
+        if (voteChange === "voteUp"){
             voteChangeValue = 1
-        } else if (voteChange === "downVote"){
+        } else if (voteChange === "voteDown"){
             voteChangeValue = -1
         } else {
             throw new Error('Not support for action')
@@ -116,7 +129,8 @@ module.exports = {
     createQuestion,
     getQuestion,
     getQuestions,
+    searchQuestions,
     updateQuestion,
     voteQuestion,
-    viewQuestion
+    // viewQuestion
 }
