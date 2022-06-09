@@ -117,6 +117,6 @@ module.exports = {
     getQuestion,
     getQuestions,
     updateQuestion,
-    voteQuestion,
-    viewQuestion
+    voteQuestion
+    // viewQuestion
 }
