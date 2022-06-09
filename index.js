@@ -1,10 +1,10 @@
 require('dotenv').config();
 const mongoose = require('mongoose')
 const express = require('express')
+const cors = require('cors')
 const authRouter = require('./modules/auth/auth.router');
 const questionRouter = require('./modules/question/question.router');
 const answerRouter = require('./modules/answer/answer.router')
-const cors = require('cors')
 
 mongoose.connect(process.env.MONGODB_URI, (err) => {
     if (err) return console.log('err');

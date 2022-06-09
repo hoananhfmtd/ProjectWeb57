@@ -3,7 +3,15 @@ const AnswerModel = require('./answer')
 
 const createAnswer = async (req, res) => {
     try {
-      const NewAnswer = await answer.create(req.body);
+        // req.body.questionId = mongoose.Types.ObjectId('629cd64bbb7a19f600cd2276')
+        // req.body.userId = mongoose.Types.ObjectId('629cd6cabb7a19f600cd2279')// hard code de test
+        const {  description,  } = req.body;
+        const { questionId } = req.query;
+        console.log(req.body);
+        const NewAnswer = await AnswerModel.create({
+        description,
+        questionId
+      });
       res.send({ success: 1, data: NewAnswer });
     } catch (err) {
       res.send({ success: 0, data: err.message || "something went wrong" });
@@ -12,8 +20,9 @@ const createAnswer = async (req, res) => {
 
 const getAnswers = async (req, res) => {
     const {questionId} = req.query;
+    console.log(req.body)
     try {
-        const listAnswer = await AnswerModel.find({questionId:questionId})
+        const listAnswer = await AnswerModel.find({questionId: mongoose.Types.ObjectId(questionId.toString())})
         res.send({ success: 1, data: listAnswer });
     } catch (err) {
         res.send({ success: 0, data: err.message || "something went wrong" })
