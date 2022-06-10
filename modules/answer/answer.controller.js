@@ -7,10 +7,13 @@ const createAnswer = async (req, res) => {
         // req.body.userId = mongoose.Types.ObjectId('629cd6cabb7a19f600cd2279')// hard code de test
         const {  description,  } = req.body;
         const { questionId } = req.query;
+        const {userId} = req.body;
         console.log(req.body);
         const NewAnswer = await AnswerModel.create({
         description,
-        questionId
+        questionId,
+        userId
+        
       });
       res.send({ success: 1, data: NewAnswer });
     } catch (err) {
